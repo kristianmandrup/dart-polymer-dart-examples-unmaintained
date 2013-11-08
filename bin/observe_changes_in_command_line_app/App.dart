@@ -1,6 +1,6 @@
-import 'dart:async';
-import 'dart:mirrors';
-import 'package:observe/observe.dart';
+import 'dart:async' show Timer;
+import 'package:observe/observe.dart'
+  show ChangeRecord, Observable, PathObserver, PropertyChangeRecord, observable;
 
 class App extends Object with Observable {
   @observable
@@ -9,30 +9,21 @@ class App extends Object with Observable {
 
 main() {
   App app = new App();
-  
+
   new Timer.periodic(const Duration(seconds: 1), (t) {
     app.counter++;
-    
+
     // Required.
     Observable.dirtyCheck();
   });
 
   app.changes.listen((List<ChangeRecord> records) {
     print('There was ${records.length} change(s)');
-    
+
     PropertyChangeRecord record = records[0] as PropertyChangeRecord;
 
-    // XXX any way to get before and after values?
-    // Quick look: no. Have to go through mirrors.
-
-    print('Change on ${record.field}');
-
-    // This is how you get the new (current) value.
-
-    InstanceMirror mirror = reflect(app);
-    var fieldValue = mirror.getField(record.field).reflectee;
-
-    print(fieldValue);
+    print('Change on ${record.name} with old value ${record.oldValue} and '
+          'new value ${record.newValue}');
   });
 
   // Or... if you want easier access to the new value
