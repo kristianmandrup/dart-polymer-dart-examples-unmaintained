@@ -11,31 +11,31 @@
 
     <polymer-element name="my-element" noscript>
         <template>
-            <!-- BUG: https://code.google.com/p/dart/issues/detail?id=14382 -->
+            <!-- BUG: https://code.google.com/p/dart/issues/detail?id=12434 -->
             <!--  link rel="stylesheet" href="styles.css" -->
             <style>
             @host {
               :scope {
                 display: block;
               }
-              
+
               :scope:hover {
                 border: 1px solid black;
               }
             }
-            
+
             p {
                 color: red;
             }
-            
+
             #message {
                 color: pink;
             }
-            
+
             .important {
                 color: green;
             }
-            
+
             #controls p {
               color: orange;
             }
@@ -49,11 +49,11 @@
             <div class="important">
                 Important is green
             </div>
-            
+
             <div>
               <content></content>
             </div>
-            
+
             <my-child>
               <div id="controls">
                 <p>Content from my-element, giving to child</p>
@@ -61,7 +61,7 @@
             </my-child>
         </template>
     </polymer-element>
-    
+
     <polymer-element name="my-child" noscript>
       <template>
         <div id="content">
