@@ -8,6 +8,6 @@ class ClickCounterElement extends PolymerElement {
   ClickCounterElement.created() : super.created();
   
   void increment(Event e, var detail, Node target) {
-    count += 1;
+    count++;
   }
 }
