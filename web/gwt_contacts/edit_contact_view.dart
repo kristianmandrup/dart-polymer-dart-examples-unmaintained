@@ -10,22 +10,16 @@ class EditContactView extends PolymerElement {
   @published Contact contact;
   Contact _originalContact;
   
-  static const EventStreamProvider<CustomEvent> _EDIT_READY_EVENT = const EventStreamProvider("edit-ready");
-  Stream<CustomEvent> get onEditReady => _EDIT_READY_EVENT.forTarget(this);
-  static void _dispatchEditReadyEvent(Element element, bool canceled) {
-    element.dispatchEvent(new CustomEvent("edit-ready", detail: canceled));
-  }
-  
   EditContactView.created() : super.created();
   
-  @override
-  void enteredView() {
-    super.enteredView();
-    _originalContact = new Contact.copy(contact);
+  static const EventStreamProvider<CustomEvent> _READY_EVENT = const EventStreamProvider("ready");
+  Stream<CustomEvent> get onReady => _READY_EVENT.forTarget(this);
+  static void _dispatchReadyEvent(Element element, bool canceled) {
+    element.dispatchEvent(new CustomEvent("ready", detail: canceled));
   }
   
   void save() {
-    _dispatchEditReadyEvent(this, false);
+    _dispatchReadyEvent(this, false);
   }
   
   void cancel() {
@@ -33,6 +27,6 @@ class EditContactView extends PolymerElement {
     contact.lastName = _originalContact.lastName;
     contact.emailAddress = _originalContact.emailAddress;
     
-    _dispatchEditReadyEvent(this, true);
+    _dispatchReadyEvent(this, true);
   }
 }
