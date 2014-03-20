@@ -1,3 +1,5 @@
+# WARNING: this repo is NOT MAINTAINED. I plan to fix everything, but for now, it's possible that none of this works.
+
 # Polymer.dart Samples and Examples
 
 In which I learn all about [polymer.dart][polymerdart]. Discuss polymer.dart at

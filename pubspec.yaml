@@ -8,3 +8,4 @@ dependencies:
   google_plus_v1_api: any
   js: any
   polymer: '>=0.8.10'
+  unittest: any
